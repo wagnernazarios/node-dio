@@ -45,6 +45,23 @@ async function logRollResult(charactername, block, diceResult, atributte) {
 }
 
 
+async function declareWinner(character1, character2) {
+    console.log(`\n\nFIM DA CORRIDA!`);
+    console.log(`${character1.NOME} - ${character1.PONTOS} pontos`);
+    console.log(`${character2.NOME} - ${character2.PONTOS} pontos`);
+
+    if (character1.PONTOS > character2.PONTOS) {
+        console.log(`${character1.NOME} é o vencedor!`);
+    } else if (character2.PONTOS > character1.PONTOS) {
+        console.log(`${character2.NOME} é o vencedor!`);
+    } else {
+        console.log("A corrida terminou empatada!");
+    }
+    console.log("------------------------------------------------");
+    console.log("Obrigado por jogar!");
+    console.log("------------------------------------------------");
+}
+
 async function playRaceEngine(character1, character2) {
     for (let round = 1; round <= 5; round++) {
 
@@ -74,8 +91,8 @@ async function playRaceEngine(character1, character2) {
             await logRollResult(character2.NOME, "manobrabilidade", diceResult2, character2.MANOBRABILIDADE);
         }
         if (block == "CONFRONTO") {
-            powerResult1 = diceResult1 + character1.PODER;
-            powerResult2 = diceResult2 + character2.PODER;
+            let powerResult1 = diceResult1 + character1.PODER;
+            let powerResult2 = diceResult2 + character2.PODER;
 
             console.log(`${character1.NOME}  confrontou o ${character2.NOME}`);
 
@@ -84,8 +101,15 @@ async function playRaceEngine(character1, character2) {
 
 
 
-            character1.PONTOS -= powerResult1 > powerResult2 && character1.PONTOS > 0 ? 1 : 0;
-            character2.PONTOS -= powerResult2 > powerResult1 && character2.PONTOS > 0 ? 1 : 0;
+            if (powerResult1 > powerResult2 && character1.PONTOS > 0) {
+                console.log(`${character1.NOME} venceu o confronto! ${character2.NOME} perdeu um ponto!`);
+                character2.PONTOS--;
+            }
+            if (powerResult2 > powerResult1 && character2.PONTOS > 0) {
+                console.log(`${character2.NOME} venceu o confronto! ${character1.NOME} perdeu um ponto!`);
+                character1.PONTOS--;
+            }
+
             console.log(powerResult1 === powerResult2 ? "Confronto empatado! Nenhum ponto foi perdido" : "")
 
         }
@@ -106,5 +130,6 @@ async function playRaceEngine(character1, character2) {
     console.log(``);
 
     await playRaceEngine(player1, player2);
+    await declareWinner(player1, player2);
 })();
 
