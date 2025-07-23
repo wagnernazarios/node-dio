@@ -10,10 +10,17 @@ async function addItemToCart(userCart, item) {
 
 }
 
-// - Remover um item do carrinho
-async function removeItemFromCart(userCart, indexItem) { }
+// ✅- Remover um item do carrinho
+async function removeItemFromCart(userCart, indexItem) {
+    const deleteIndex = indexItem - 1;
+    // Ajusta o índice para corresponder ao array (começa em 0)
 
-// - deletar os itens do carrinho
+    if (indexItem >= 0 && indexItem < userCart.length) {
+        userCart.splice(deleteIndex, 1);
+    }
+}
+
+// ✅- deletar os itens do carrinho
 async function deleteItemFromCart(userCart, nameItem) {
     const indexItem = userCart.findIndex(item => item.name === nameItem);
     if (indexItem !== -1) {
@@ -26,10 +33,21 @@ async function calculateTotalCart(userCart) {
     console.log(userCart.reduce((total, item) => total + item.subtotal(), 0));
 }
 
+
+// ✅- mostrar os itens do carrinho
+async function displayCart(userCart) {
+    console.log("\n\nItems in your cart:");
+    userCart.forEach((item, index) => {
+        console.log(`\n${index + 1} \nItem: ${item.name}, \nPrice: ${item.price}, \nQuantity: ${item.quantity}, \nSubtotal =  ${item.subtotal()}
+        `)
+    })
+}
+
 export {
     addItemToCart,
     removeItemFromCart,
     calculateTotalCart,
-    deleteItemFromCart
+    deleteItemFromCart,
+    displayCart
 }
 
