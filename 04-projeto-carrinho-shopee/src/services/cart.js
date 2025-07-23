@@ -7,13 +7,19 @@
 //  ✅- Adicionar um item ao carrinho
 async function addItemToCart(userCart, item) {
     userCart.push(item);
+
 }
 
 // - Remover um item do carrinho
 async function removeItemFromCart(userCart, indexItem) { }
 
 // - deletar os itens do carrinho
-async function deleteItemFromCart(userCart, nameItem) { }
+async function deleteItemFromCart(userCart, nameItem) {
+    const indexItem = userCart.findIndex(item => item.name === nameItem);
+    if (indexItem !== -1) {
+        userCart.splice(indexItem, 1);
+    }
+}
 
 // ✅ - Calcular o total do carrinho
 async function calculateTotalCart(userCart) {
@@ -23,6 +29,7 @@ async function calculateTotalCart(userCart) {
 export {
     addItemToCart,
     removeItemFromCart,
-    calculateTotalCart
+    calculateTotalCart,
+    deleteItemFromCart
 }
 
