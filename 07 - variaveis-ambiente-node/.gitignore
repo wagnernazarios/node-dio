@@ -1,0 +1,4 @@
+# .gitignore é um arquivo que especifica quais arquivos ou diretórios devem ser ignorados pelo Git. Ele é usado para evitar que arquivos temporários, de configuração ou outros arquivos desnecessários sejam rastreados pelo controle de versão.
+
+node_modules/
+.env/
