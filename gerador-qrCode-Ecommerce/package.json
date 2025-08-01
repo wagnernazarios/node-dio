@@ -1,0 +1,15 @@
+{
+  "name": "gerador-qrcode-ecommerce",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "node src/index.js",
+    "start:dev-watch": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
