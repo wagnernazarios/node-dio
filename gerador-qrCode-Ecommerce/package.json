@@ -12,6 +12,10 @@
   "license": "ISC",
   "description": "Gerador de QR code e password para E-commerce",
   "dependencies": {
-    "prompt": "^1.3.0"
+    "prompt": "^1.3.0",
+    "qrcode-terminal": "^0.12.0"
+  },
+  "devDependencies": {
+    "chalk": "^5.4.1"
   }
 }
