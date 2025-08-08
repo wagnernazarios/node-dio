@@ -11,6 +11,7 @@ const promptQrCode = [
         message: chalk.red.bold("Escolha somente entre 1 e 2"),
         required: true
     }
+
 ]
 
 
